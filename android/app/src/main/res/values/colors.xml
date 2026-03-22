@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark navy background matching AppColors.darkBg -->
+    <color name="splash_bg">#FF0A0E1A</color>
+    <color name="accent_cyan">#FF00D4FF</color>
+</resources>
