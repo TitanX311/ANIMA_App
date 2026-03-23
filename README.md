@@ -192,4 +192,4 @@ lib/
 
 ---
 
-*Built with ❤️ for ANIMA Aero Club, Guwahati*
+*Built with ❤️ for ANIMA Aero Club, AGARTALA*

@@ -82,10 +82,9 @@ class _SplashScreenState extends State<SplashScreen>
                 FadeIn(
                   delay: const Duration(milliseconds: 200),
                   child: SizedBox(
-                    width: 220,
-                    height: 160,
+                    width: double.infinity,
                     child: Lottie.asset(
-                      'assets/lottie/airplane.lottie',
+                      'assets/lottie/airplane.json',
                       fit: BoxFit.contain,
                       errorBuilder: (_, __, ___) =>
                           // Fallback if lottie not yet placed
@@ -102,7 +101,7 @@ class _SplashScreenState extends State<SplashScreen>
                   ),
                 ),
 
-                const SizedBox(height: 24),
+                // const SizedBox(height: 24),
 
                 // Logo text
                 FadeInUp(
@@ -138,18 +137,18 @@ class _SplashScreenState extends State<SplashScreen>
 
                 const SizedBox(height: 12),
 
-                FadeInUp(
-                  delay: const Duration(milliseconds: 600),
-                  child: Text(
-                    'GUWAHATI, ASSAM',
-                    style: TextStyle(
-                      fontSize: 10,
-                      letterSpacing: 5,
-                      color: acc.withOpacity(0.6),
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
+                // FadeInUp(
+                //   delay: const Duration(milliseconds: 600),
+                //   child: Text(
+                //     'AGARTALA, ASSAM',
+                //     style: TextStyle(
+                //       fontSize: 10,
+                //       letterSpacing: 5,
+                //       color: acc.withOpacity(0.6),
+                //       fontWeight: FontWeight.w500,
+                //     ),
+                //   ),
+                // ),
 
                 const Spacer(),
 
@@ -218,8 +217,8 @@ class _SplashStarPainter extends CustomPainter {
     final paint = Paint();
     for (final (x, y, s, phase) in _stars) {
       final cycle = (t * 2 + phase) % 1.0;
-      final opacity = 0.15 +
-          0.6 * (cycle < 0.5 ? cycle * 2 : 1.0 - (cycle - 0.5) * 2);
+      final opacity =
+          0.15 + 0.6 * (cycle < 0.5 ? cycle * 2 : 1.0 - (cycle - 0.5) * 2);
       paint.color = Colors.white.withOpacity(opacity * 0.8);
       canvas.drawCircle(Offset(x * size.width, y * size.height), s, paint);
     }

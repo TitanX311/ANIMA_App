@@ -44,7 +44,7 @@ class _WeatherWidgetState extends State<WeatherWidget> {
   Future<void> _load() async {
     // ── BACKEND INTEGRATION POINT ──────────────────────────────────────────
     // Replace this with a real API call, e.g.:
-    //   final res = await ApiService().getWeather('Guwahati');
+    //   final res = await ApiService().getWeather('AGARTALA');
     //   setState(() { _weather = res; _loading = false; });
     // ───────────────────────────────────────────────────────────────────────
     await Future.delayed(const Duration(milliseconds: 600));
@@ -126,7 +126,7 @@ class _WeatherWidgetState extends State<WeatherWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Guwahati  ${w.tempC.toInt()}°C  •  ${w.condition}',
+                    'AGARTALA  ${w.tempC.toInt()}°C  •  ${w.condition}',
                     style: TextStyle(
                       fontSize: 11,
                       fontWeight: FontWeight.w600,
@@ -146,8 +146,7 @@ class _WeatherWidgetState extends State<WeatherWidget> {
 
             // Flyable badge
             Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
                 color: statusColor.withOpacity(0.15),
                 borderRadius: BorderRadius.circular(6),

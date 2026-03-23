@@ -33,16 +33,19 @@ class DataProvider extends ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
 
     final pubsJson = prefs.getStringList('publications') ?? [];
-    _publications = pubsJson.map((j) => RDPublication.fromJson(jsonDecode(j))).toList();
+    _publications =
+        pubsJson.map((j) => RDPublication.fromJson(jsonDecode(j))).toList();
 
     final expsJson = prefs.getStringList('expenses') ?? [];
     _expenses = expsJson.map((j) => Expense.fromJson(jsonDecode(j))).toList();
 
     final projsJson = prefs.getStringList('projects') ?? [];
-    _projects = projsJson.map((j) => ClubProject.fromJson(jsonDecode(j))).toList();
+    _projects =
+        projsJson.map((j) => ClubProject.fromJson(jsonDecode(j))).toList();
 
     final galleryJson = prefs.getStringList('gallery') ?? [];
-    _gallery = galleryJson.map((j) => GalleryPhoto.fromJson(jsonDecode(j))).toList();
+    _gallery =
+        galleryJson.map((j) => GalleryPhoto.fromJson(jsonDecode(j))).toList();
 
     // Seed demo data if empty
     if (_publications.isEmpty) await _seedData();
@@ -54,16 +57,20 @@ class DataProvider extends ChangeNotifier {
     _publications = [
       RDPublication(
         title: 'Aerodynamic Optimization of Low-Speed UAV Wings',
-        abstract: 'This paper presents a comprehensive study on wing profile optimization for sub-200g UAV platforms, achieving 23% efficiency gain.',
-        content: '''Introduction\nWing design is critical for efficient UAV operation. Our research focused on optimizing NACA profiles for low Reynolds number flight regimes...\n\nMethodology\nWe conducted CFD simulations using OpenFOAM across 12 wing profiles...\n\nResults\nThe NACA 4412 modified profile showed optimal lift-to-drag ratio of 18.4 at 15m/s cruise speed.\n\nConclusion\nSignificant improvements in endurance were achieved through careful profile selection and wingtip modification.''',
+        abstract:
+            'This paper presents a comprehensive study on wing profile optimization for sub-200g UAV platforms, achieving 23% efficiency gain.',
+        content:
+            '''Introduction\nWing design is critical for efficient UAV operation. Our research focused on optimizing NACA profiles for low Reynolds number flight regimes...\n\nMethodology\nWe conducted CFD simulations using OpenFOAM across 12 wing profiles...\n\nResults\nThe NACA 4412 modified profile showed optimal lift-to-drag ratio of 18.4 at 15m/s cruise speed.\n\nConclusion\nSignificant improvements in endurance were achieved through careful profile selection and wingtip modification.''',
         authorId: 'seed',
         authorName: 'Priya Das',
         tags: ['UAV', 'Aerodynamics', 'CFD', 'Wing Design'],
       ),
       RDPublication(
         title: 'Electric Propulsion System Analysis for Club Aircraft',
-        abstract: 'Comparative analysis of brushless motor configurations for the ANIMA club fleet, covering efficiency, cost, and performance metrics.',
-        content: '''Overview\nElectric propulsion offers significant advantages for club operations including reduced noise, lower maintenance, and cleaner operation...\n\nTest Configurations\nFive motor-ESC-propeller combinations were bench tested...\n\nFindings\nThe T-Motor F90-1300KV with 5x4.5 folding prop delivered optimal efficiency at 89.3%.\n\nRecommendations\nTransition to electric fleet recommended with phased implementation over 24 months.''',
+        abstract:
+            'Comparative analysis of brushless motor configurations for the ANIMA club fleet, covering efficiency, cost, and performance metrics.',
+        content:
+            '''Overview\nElectric propulsion offers significant advantages for club operations including reduced noise, lower maintenance, and cleaner operation...\n\nTest Configurations\nFive motor-ESC-propeller combinations were bench tested...\n\nFindings\nThe T-Motor F90-1300KV with 5x4.5 folding prop delivered optimal efficiency at 89.3%.\n\nRecommendations\nTransition to electric fleet recommended with phased implementation over 24 months.''',
         authorId: 'seed',
         authorName: 'Arjun Sharma',
         tags: ['Electric', 'Propulsion', 'Motors', 'Efficiency'],
@@ -110,7 +117,8 @@ class DataProvider extends ChangeNotifier {
       ClubProject(
         planeName: 'Brahmaputra Mk.I',
         type: 'Fixed Wing',
-        description: 'Our flagship club trainer aircraft. Built from scratch using foam board construction with fiberglass reinforced control surfaces. Perfect for beginners.',
+        description:
+            'Our flagship club trainer aircraft. Built from scratch using foam board construction with fiberglass reinforced control surfaces. Perfect for beginners.',
         imageUrls: [
           'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800',
           'https://images.unsplash.com/photo-1474302770737-173ee21bab63?w=800',
@@ -129,7 +137,8 @@ class DataProvider extends ChangeNotifier {
       ClubProject(
         planeName: 'Kingfisher FPV',
         type: 'FPV Racer',
-        description: 'High-performance FPV racing quad built for speed. Features carbon fiber frame, digital video transmission, and tuned PID controllers.',
+        description:
+            'High-performance FPV racing quad built for speed. Features carbon fiber frame, digital video transmission, and tuned PID controllers.',
         imageUrls: [
           'https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?w=800',
         ],
@@ -148,15 +157,17 @@ class DataProvider extends ChangeNotifier {
 
     _gallery = [
       GalleryPhoto(
-        imageUrl: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800',
+        imageUrl:
+            'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800',
         title: 'Annual Airshow 2024',
-        description: 'Club members at the Guwahati Airshow',
+        description: 'Club members at the AGARTALA Airshow',
         uploadedById: 'seed',
         uploadedByName: 'Arjun Sharma',
         tags: ['Airshow', 'Event'],
       ),
       GalleryPhoto(
-        imageUrl: 'https://images.unsplash.com/photo-1474302770737-173ee21bab63?w=800',
+        imageUrl:
+            'https://images.unsplash.com/photo-1474302770737-173ee21bab63?w=800',
         title: 'Morning Flight Session',
         description: 'Early morning training at our field',
         uploadedById: 'seed',
@@ -164,7 +175,8 @@ class DataProvider extends ChangeNotifier {
         tags: ['Training', 'Morning'],
       ),
       GalleryPhoto(
-        imageUrl: 'https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?w=800',
+        imageUrl:
+            'https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?w=800',
         title: 'FPV Racing Practice',
         description: 'Kingfisher on a practice run',
         uploadedById: 'seed',
@@ -172,7 +184,8 @@ class DataProvider extends ChangeNotifier {
         tags: ['FPV', 'Racing'],
       ),
       GalleryPhoto(
-        imageUrl: 'https://images.unsplash.com/photo-1566618501882-4f0e0b0b0b6e?w=800',
+        imageUrl:
+            'https://images.unsplash.com/photo-1566618501882-4f0e0b0b0b6e?w=800',
         title: 'Workshop Build Day',
         description: 'Team building Brahmaputra Mk.II',
         uploadedById: 'seed',
@@ -188,12 +201,12 @@ class DataProvider extends ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setStringList('publications',
         _publications.map((p) => jsonEncode(p.toJson())).toList());
-    await prefs.setStringList('expenses',
-        _expenses.map((e) => jsonEncode(e.toJson())).toList());
-    await prefs.setStringList('projects',
-        _projects.map((p) => jsonEncode(p.toJson())).toList());
-    await prefs.setStringList('gallery',
-        _gallery.map((g) => jsonEncode(g.toJson())).toList());
+    await prefs.setStringList(
+        'expenses', _expenses.map((e) => jsonEncode(e.toJson())).toList());
+    await prefs.setStringList(
+        'projects', _projects.map((p) => jsonEncode(p.toJson())).toList());
+    await prefs.setStringList(
+        'gallery', _gallery.map((g) => jsonEncode(g.toJson())).toList());
   }
 
   // Publications

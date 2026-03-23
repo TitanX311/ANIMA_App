@@ -1,6 +1,5 @@
 // lib/screens/auth_screen.dart
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:animate_do/animate_do.dart';
 import '../providers/auth_provider.dart';
@@ -81,23 +80,33 @@ class _AuthScreenState extends State<AuthScreen>
               children: [
                 const SizedBox(height: 32),
 
-                // Logo + Lottie
+                // Logo
                 FadeInDown(
                   child: Column(
                     children: [
-                      SizedBox(
-                        height: 160,
-                        child: Lottie.network(
-                          'https://assets10.lottiefiles.com/packages/lf20_jcikwtux.json',
-                          fit: BoxFit.contain,
-                          errorBuilder: (_, __, ___) => Icon(
-                            Icons.airplanemode_active,
-                            size: 80,
-                            color: acc,
+                      Center(
+                        child: Container(
+                          width: 120,
+                          height: 120,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                color: acc.withAlpha((0.6 * 255).toInt()),
+                                blurRadius: 32,
+                                spreadRadius: 8,
+                              ),
+                            ],
+                          ),
+                          child: ClipOval(
+                            child: Image.asset(
+                              'assets/images/logo.jpeg',
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 4), // Reduced gap
                       Text(
                         'ANIMA',
                         style: TextStyle(
@@ -106,7 +115,11 @@ class _AuthScreenState extends State<AuthScreen>
                           letterSpacing: 12,
                           color: acc,
                           shadows: isDark
-                              ? [Shadow(color: acc.withOpacity(0.5), blurRadius: 20)]
+                              ? [
+                                  Shadow(
+                                      color: acc.withAlpha((0.5 * 255).toInt()),
+                                      blurRadius: 20)
+                                ]
                               : [],
                         ),
                       ),
@@ -118,7 +131,7 @@ class _AuthScreenState extends State<AuthScreen>
                           color: Theme.of(context)
                               .colorScheme
                               .onSurface
-                              .withOpacity(0.5),
+                              .withAlpha((0.5 * 255).toInt()),
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -132,13 +145,14 @@ class _AuthScreenState extends State<AuthScreen>
                 FadeIn(
                   delay: const Duration(milliseconds: 300),
                   child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 10),
                     decoration: BoxDecoration(
-                      color: AppColors.gold.withOpacity(0.1),
+                      color: AppColors.gold.withAlpha((0.1 * 255).toInt()),
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
-                          color: AppColors.gold.withOpacity(0.3), width: 1),
+                          color: AppColors.gold.withAlpha((0.3 * 255).toInt()),
+                          width: 1),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -181,7 +195,7 @@ class _AuthScreenState extends State<AuthScreen>
                                     color: Theme.of(context)
                                         .colorScheme
                                         .onSurface
-                                        .withOpacity(0.6),
+                                        .withAlpha((0.6 * 255).toInt()),
                                     fontFamily: 'SpaceMono',
                                   ),
                                 ),
@@ -202,12 +216,17 @@ class _AuthScreenState extends State<AuthScreen>
                     child: TabBar(
                       controller: _tabCtrl,
                       indicator: BoxDecoration(
-                        gradient: isDark ? AppColors.cyanGlow : AppColors.cyanGlow,
+                        gradient:
+                            isDark ? AppColors.cyanGlow : AppColors.cyanGlow,
                         borderRadius: BorderRadius.circular(10),
                       ),
+                      indicatorSize: TabBarIndicatorSize.tab,
                       labelColor: Colors.white,
-                      unselectedLabelColor:
-                          Theme.of(context).colorScheme.onSurface.withOpacity(0.4),
+                      labelPadding: const EdgeInsets.symmetric(horizontal: 20),
+                      unselectedLabelColor: Theme.of(context)
+                          .colorScheme
+                          .onSurface
+                          .withAlpha((0.4 * 255).toInt()),
                       labelStyle: const TextStyle(
                         fontFamily: 'BebasNeue',
                         fontSize: 14,
@@ -244,9 +263,10 @@ class _AuthScreenState extends State<AuthScreen>
                                       labelText: 'Full Name',
                                       prefixIcon: Icon(Icons.person_outline),
                                     ),
-                                    validator: (v) => (!_isLogin && (v?.isEmpty ?? true))
-                                        ? 'Enter your name'
-                                        : null,
+                                    validator: (v) =>
+                                        (!_isLogin && (v?.isEmpty ?? true))
+                                            ? 'Enter your name'
+                                            : null,
                                   ),
                                 ),
                         ),
@@ -257,7 +277,8 @@ class _AuthScreenState extends State<AuthScreen>
                             labelText: 'Email Address',
                             prefixIcon: Icon(Icons.mail_outline),
                           ),
-                          validator: (v) => (v?.isEmpty ?? true) ? 'Enter email' : null,
+                          validator: (v) =>
+                              (v?.isEmpty ?? true) ? 'Enter email' : null,
                         ),
                         const SizedBox(height: 16),
                         TextFormField(
@@ -270,7 +291,8 @@ class _AuthScreenState extends State<AuthScreen>
                               icon: Icon(_obscure
                                   ? Icons.visibility_outlined
                                   : Icons.visibility_off_outlined),
-                              onPressed: () => setState(() => _obscure = !_obscure),
+                              onPressed: () =>
+                                  setState(() => _obscure = !_obscure),
                             ),
                           ),
                           validator: (v) =>
@@ -282,7 +304,8 @@ class _AuthScreenState extends State<AuthScreen>
                           onTap: _submit,
                           isLoading: auth.isLoading,
                           width: double.infinity,
-                          gradient: isDark ? AppColors.cyanGlow : AppColors.cyanGlow,
+                          gradient:
+                              isDark ? AppColors.cyanGlow : AppColors.cyanGlow,
                         ),
                       ],
                     ),
@@ -295,14 +318,14 @@ class _AuthScreenState extends State<AuthScreen>
                 FadeIn(
                   delay: const Duration(milliseconds: 500),
                   child: Text(
-                    '✦ ANIMA AERO CLUB • GUWAHATI ✦',
+                    '✦ ANIMA AERO CLUB • AGARTALA ✦',
                     style: TextStyle(
                       fontSize: 10,
                       letterSpacing: 3,
                       color: Theme.of(context)
                           .colorScheme
                           .onSurface
-                          .withOpacity(0.25),
+                          .withAlpha((0.25 * 255).toInt()),
                     ),
                   ),
                 ),

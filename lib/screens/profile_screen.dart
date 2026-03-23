@@ -22,15 +22,12 @@ class ProfileScreen extends StatelessWidget {
     final acc = isDark ? AppColors.cyan : const Color(0xFF0066CC);
     final user = auth.currentUser!;
 
-    final userPubs = data.publications
-        .where((p) => p.authorId == user.id)
-        .length;
-    final userProjects = data.projects
-        .where((p) => p.addedById == user.id)
-        .length;
-    final userPhotos = data.gallery
-        .where((g) => g.uploadedById == user.id)
-        .length;
+    final userPubs =
+        data.publications.where((p) => p.authorId == user.id).length;
+    final userProjects =
+        data.projects.where((p) => p.addedById == user.id).length;
+    final userPhotos =
+        data.gallery.where((g) => g.uploadedById == user.id).length;
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -124,7 +121,8 @@ class ProfileScreen extends StatelessWidget {
                             fontFamily: 'BebasNeue',
                             fontSize: 26,
                             letterSpacing: 2,
-                            color: isDark ? Colors.white : const Color(0xFF1E3A5F),
+                            color:
+                                isDark ? Colors.white : const Color(0xFF1E3A5F),
                           ),
                         ),
                       ),
@@ -223,8 +221,8 @@ class ProfileScreen extends StatelessWidget {
                             color: acc.withOpacity(0.12),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child:
-                              Icon(Icons.calendar_today_outlined, color: acc, size: 18),
+                          child: Icon(Icons.calendar_today_outlined,
+                              color: acc, size: 18),
                         ),
                         const SizedBox(width: 12),
                         Column(
@@ -282,9 +280,7 @@ class ProfileScreen extends StatelessWidget {
                           isFirst: true,
                         ),
                         Divider(
-                            height: 1,
-                            color: acc.withOpacity(0.1),
-                            indent: 56),
+                            height: 1, color: acc.withOpacity(0.1), indent: 56),
                         _SettingsTile(
                           icon: Icons.notifications_outlined,
                           label: 'Notifications',
@@ -296,9 +292,7 @@ class ProfileScreen extends StatelessWidget {
                           ),
                         ),
                         Divider(
-                            height: 1,
-                            color: acc.withOpacity(0.1),
-                            indent: 56),
+                            height: 1, color: acc.withOpacity(0.1), indent: 56),
                         _SettingsTile(
                           icon: Icons.language_outlined,
                           label: 'Language',
@@ -311,9 +305,7 @@ class ProfileScreen extends StatelessWidget {
                                   .withOpacity(0.3)),
                         ),
                         Divider(
-                            height: 1,
-                            color: acc.withOpacity(0.1),
-                            indent: 56),
+                            height: 1, color: acc.withOpacity(0.1), indent: 56),
                         _SettingsTile(
                           icon: Icons.info_outline,
                           label: 'About ANIMA',
@@ -346,7 +338,8 @@ class ProfileScreen extends StatelessWidget {
                         context: context,
                         builder: (_) => AlertDialog(
                           title: const Text('Logout?'),
-                          content: const Text('Are you sure you want to sign out?'),
+                          content:
+                              const Text('Are you sure you want to sign out?'),
                           actions: [
                             TextButton(
                               onPressed: () => Navigator.pop(context, false),
@@ -371,7 +364,7 @@ class ProfileScreen extends StatelessWidget {
 
                 Center(
                   child: Text(
-                    '✦ ANIMA AERO CLUB • GUWAHATI ✦',
+                    '✦ ANIMA AERO CLUB • AGARTALA ✦',
                     style: TextStyle(
                       fontSize: 10,
                       letterSpacing: 3,
@@ -489,8 +482,7 @@ class _SettingsTile extends StatelessWidget {
           ),
         ),
         trailing: trailing,
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
       ),
     );
   }

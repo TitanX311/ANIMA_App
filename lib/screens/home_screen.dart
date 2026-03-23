@@ -21,9 +21,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final auth = context.watch<AuthProvider>();
     final data = context.watch<DataProvider>();
-    final ns   = context.watch<NotificationService>();
+    final ns = context.watch<NotificationService>();
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final acc  = isDark ? AppColors.cyan : const Color(0xFF0066CC);
+    final acc = isDark ? AppColors.cyan : const Color(0xFF0066CC);
     final user = auth.currentUser!;
 
     return Scaffold(
@@ -73,9 +73,8 @@ class HomeScreen extends StatelessWidget {
                           color: AppColors.red,
                           shape: BoxShape.circle,
                           border: Border.all(
-                            color: isDark
-                                ? AppColors.darkBg
-                                : AppColors.lightBg,
+                            color:
+                                isDark ? AppColors.darkBg : AppColors.lightBg,
                             width: 1.5,
                           ),
                         ),
@@ -124,12 +123,11 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 100),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
-
                 // Hero banner
                 FadeInDown(
                   child: GlassCard(
                     padding: const EdgeInsets.all(20),
-                    borderColor: acc.withOpacity(0.3),
+                    borderColor: acc.withAlpha((0.3 * 255).toInt()),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -146,7 +144,7 @@ class HomeScreen extends StatelessWidget {
                                       color: Theme.of(context)
                                           .colorScheme
                                           .onSurface
-                                          .withOpacity(0.5),
+                                          .withAlpha((0.5 * 255).toInt()),
                                     ),
                                   ),
                                   Text(
@@ -170,7 +168,7 @@ class HomeScreen extends StatelessWidget {
                                         color: Theme.of(context)
                                             .colorScheme
                                             .onSurface
-                                            .withOpacity(0.45),
+                                            .withAlpha((0.45 * 255).toInt()),
                                       ),
                                     ),
                                   ],
@@ -179,13 +177,12 @@ class HomeScreen extends StatelessWidget {
                             ),
                             // Lottie airplane
                             SizedBox(
-                              width: 110,
-                              height: 80,
+                              width: 120,
+                              height: 110,
                               child: Lottie.asset(
-                                'assets/lottie/airplane.lottie',
+                                'assets/lottie/Plane.json',
                                 fit: BoxFit.contain,
-                                errorBuilder: (_, __, ___) =>
-                                    Lottie.network(
+                                errorBuilder: (_, __, ___) => Lottie.network(
                                   'https://assets10.lottiefiles.com/packages/lf20_jcikwtux.json',
                                   fit: BoxFit.contain,
                                   errorBuilder: (_, __, ___) => Icon(
@@ -221,8 +218,7 @@ class HomeScreen extends StatelessWidget {
                         onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) =>
-                                  const AnnouncementsScreen()),
+                              builder: (_) => const AnnouncementsScreen()),
                         ),
                       ),
                       const SizedBox(width: 10),
@@ -245,8 +241,7 @@ class HomeScreen extends StatelessWidget {
                         onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) =>
-                                  const NotificationsScreen()),
+                              builder: (_) => const NotificationsScreen()),
                         ),
                       ),
                     ],
@@ -264,11 +259,11 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 14),
-
                 AnimationLimiter(
                   child: GridView.count(
                     crossAxisCount: 2,
                     shrinkWrap: true,
+                    padding: EdgeInsets.zero,
                     physics: const NeverScrollableScrollPhysics(),
                     mainAxisSpacing: 12,
                     crossAxisSpacing: 12,
@@ -313,9 +308,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 28),
-
                 // Recent R&D
                 FadeInUp(
                   delay: const Duration(milliseconds: 200),
@@ -338,8 +331,8 @@ class HomeScreen extends StatelessWidget {
                           padding: const EdgeInsets.only(bottom: 12),
                           child: FadeInLeft(
                             child: GlassCard(
-                              borderColor:
-                                  AppColors.purple.withOpacity(0.2),
+                              borderColor: AppColors.purple
+                                  .withAlpha((0.2 * 255).toInt()),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -371,7 +364,7 @@ class HomeScreen extends StatelessWidget {
                                           color: Theme.of(context)
                                               .colorScheme
                                               .onSurface
-                                              .withOpacity(0.35),
+                                              .withAlpha((0.35 * 255).toInt()),
                                         ),
                                       ),
                                     ],
@@ -393,7 +386,7 @@ class HomeScreen extends StatelessWidget {
                                       color: Theme.of(context)
                                           .colorScheme
                                           .onSurface
-                                          .withOpacity(0.55),
+                                          .withAlpha((0.55 * 255).toInt()),
                                     ),
                                   ),
                                   const SizedBox(height: 10),
@@ -403,8 +396,7 @@ class HomeScreen extends StatelessWidget {
                                     children: p.tags
                                         .take(3)
                                         .map((t) => AccentChip(
-                                            label: t,
-                                            color: AppColors.purple))
+                                            label: t, color: AppColors.purple))
                                         .toList(),
                                   ),
                                 ],
@@ -432,8 +424,7 @@ class HomeScreen extends StatelessWidget {
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       itemCount: data.projects.length,
-                      separatorBuilder: (_, __) =>
-                          const SizedBox(width: 12),
+                      separatorBuilder: (_, __) => const SizedBox(width: 12),
                       itemBuilder: (ctx, i) {
                         final proj = data.projects[i];
                         return FadeInRight(
@@ -443,7 +434,8 @@ class HomeScreen extends StatelessWidget {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16),
                               border: Border.all(
-                                  color: acc.withOpacity(0.2), width: 1),
+                                  color: acc.withAlpha((0.2 * 255).toInt()),
+                                  width: 1),
                             ),
                             clipBehavior: Clip.antiAlias,
                             child: Stack(
@@ -455,19 +447,17 @@ class HomeScreen extends StatelessWidget {
                                           fit: BoxFit.cover,
                                           errorBuilder: (_, __, ___) =>
                                               Container(
-                                            color: acc.withOpacity(0.1),
-                                            child: Icon(
-                                                Icons.flight_rounded,
-                                                size: 48,
-                                                color: acc),
+                                            color: acc
+                                                .withAlpha((0.1 * 255).toInt()),
+                                            child: Icon(Icons.flight_rounded,
+                                                size: 48, color: acc),
                                           ),
                                         )
                                       : Container(
-                                          color: acc.withOpacity(0.1),
-                                          child: Icon(
-                                              Icons.flight_rounded,
-                                              size: 48,
-                                              color: acc),
+                                          color: acc
+                                              .withAlpha((0.1 * 255).toInt()),
+                                          child: Icon(Icons.flight_rounded,
+                                              size: 48, color: acc),
                                         ),
                                 ),
                                 Positioned.fill(
@@ -478,7 +468,8 @@ class HomeScreen extends StatelessWidget {
                                         end: Alignment.bottomCenter,
                                         colors: [
                                           Colors.transparent,
-                                          Colors.black.withOpacity(0.7),
+                                          Colors.black
+                                              .withAlpha((0.7 * 255).toInt()),
                                         ],
                                       ),
                                     ),
@@ -506,7 +497,7 @@ class HomeScreen extends StatelessWidget {
                                         style: TextStyle(
                                           fontSize: 10,
                                           color: Colors.white
-                                              .withOpacity(0.7),
+                                              .withAlpha((0.7 * 255).toInt()),
                                         ),
                                       ),
                                     ],
@@ -567,9 +558,9 @@ class _QuickAction extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(
-            color: color.withOpacity(0.1),
+            color: color.withAlpha((0.1 * 255).toInt()),
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: color.withOpacity(0.25)),
+            border: Border.all(color: color.withAlpha((0.25 * 255).toInt())),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
