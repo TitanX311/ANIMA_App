@@ -38,12 +38,12 @@ class ProfileScreen extends StatelessWidget {
             expandedHeight: 240,
             pinned: true,
             backgroundColor: Colors.transparent,
-            leading: Builder(
-              builder: (ctx) => IconButton(
-                icon: Icon(Icons.menu_rounded, color: acc),
-                onPressed: () => Scaffold.of(ctx).openDrawer(),
-              ),
-            ),
+            // leading: Builder(
+            //   builder: (ctx) => IconButton(
+            //     icon: Icon(Icons.menu_rounded, color: acc),
+            //     onPressed: () => Scaffold.of(ctx).openDrawer(),
+            //   ),
+            // ),
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
                 decoration: BoxDecoration(

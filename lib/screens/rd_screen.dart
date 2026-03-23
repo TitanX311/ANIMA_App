@@ -18,7 +18,15 @@ class RDScreen extends StatefulWidget {
 
 class _RDScreenState extends State<RDScreen> {
   String _filter = 'All';
-  final _tags = ['All', 'UAV', 'Aerodynamics', 'CFD', 'Electric', 'Propulsion', 'Wing Design'];
+  final _tags = [
+    'All',
+    'UAV',
+    'Aerodynamics',
+    'CFD',
+    'Electric',
+    'Propulsion',
+    'Wing Design'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +47,12 @@ class _RDScreenState extends State<RDScreen> {
           style: TextStyle(color: acc, letterSpacing: 2),
         ),
         backgroundColor: Colors.transparent,
-        leading: Builder(
-          builder: (ctx) => IconButton(
-            icon: Icon(Icons.menu_rounded, color: acc),
-            onPressed: () => Scaffold.of(ctx).openDrawer(),
-          ),
-        ),
+        // leading: Builder(
+        //   builder: (ctx) => IconButton(
+        //     icon: Icon(Icons.menu_rounded, color: acc),
+        //     onPressed: () => Scaffold.of(ctx).openDrawer(),
+        //   ),
+        // ),
         actions: [
           if (auth.isRDTeam || auth.isAdmin)
             Padding(
@@ -52,7 +60,8 @@ class _RDScreenState extends State<RDScreen> {
               child: GestureDetector(
                 onTap: () => _showPublishDialog(context, auth, data),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
                   decoration: BoxDecoration(
                     gradient: AppColors.purpleGlow,
                     borderRadius: BorderRadius.circular(8),
@@ -97,12 +106,16 @@ class _RDScreenState extends State<RDScreen> {
                   labelStyle: TextStyle(
                     color: selected
                         ? acc
-                        : Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
+                        : Theme.of(context)
+                            .colorScheme
+                            .onSurface
+                            .withOpacity(0.5),
                     fontSize: 12,
                     fontWeight: selected ? FontWeight.w700 : FontWeight.w400,
                   ),
                   side: BorderSide(
-                    color: selected ? acc.withOpacity(0.5) : acc.withOpacity(0.15),
+                    color:
+                        selected ? acc.withOpacity(0.5) : acc.withOpacity(0.15),
                   ),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
@@ -136,12 +149,11 @@ class _RDScreenState extends State<RDScreen> {
                             child: _PublicationCard(
                               pub: filtered[i],
                               canDelete: auth.isAdmin ||
-                                  auth.currentUser?.id ==
-                                      filtered[i].authorId,
+                                  auth.currentUser?.id == filtered[i].authorId,
                               onDelete: () =>
                                   data.deletePublication(filtered[i].id),
-                              onTap: () =>
-                                  _showDetail(context, filtered[i], isDark, acc),
+                              onTap: () => _showDetail(
+                                  context, filtered[i], isDark, acc),
                             ),
                           ),
                         ),
@@ -172,8 +184,7 @@ class _RDScreenState extends State<RDScreen> {
           height: MediaQuery.of(ctx).size.height * 0.85,
           decoration: BoxDecoration(
             color: isDark ? AppColors.darkBg2 : AppColors.lightSurface,
-            borderRadius:
-                const BorderRadius.vertical(top: Radius.circular(24)),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
             border: Border(
                 top: BorderSide(color: AppColors.purple.withOpacity(0.3))),
           ),
@@ -192,8 +203,8 @@ class _RDScreenState extends State<RDScreen> {
                         gradient: AppColors.purpleGlow,
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child:
-                          const Icon(Icons.science, color: Colors.white, size: 18),
+                      child: const Icon(Icons.science,
+                          color: Colors.white, size: 18),
                     ),
                     const SizedBox(width: 12),
                     const Text(
@@ -363,7 +374,8 @@ class _RDScreenState extends State<RDScreen> {
                     Wrap(
                       spacing: 6,
                       children: pub.tags
-                          .map((t) => AccentChip(label: t, color: AppColors.purple))
+                          .map((t) =>
+                              AccentChip(label: t, color: AppColors.purple))
                           .toList(),
                     ),
                     const SizedBox(height: 12),
@@ -382,7 +394,10 @@ class _RDScreenState extends State<RDScreen> {
                       'By ${pub.authorName}  •  ${_fmt(pub.publishedAt)}',
                       style: TextStyle(
                         fontSize: 12,
-                        color: Theme.of(ctx).colorScheme.onSurface.withOpacity(0.45),
+                        color: Theme.of(ctx)
+                            .colorScheme
+                            .onSurface
+                            .withOpacity(0.45),
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -487,8 +502,7 @@ class _PublicationCard extends StatelessWidget {
                   gradient: AppColors.purpleGlow,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child:
-                    const Icon(Icons.science, color: Colors.white, size: 16),
+                child: const Icon(Icons.science, color: Colors.white, size: 16),
               ),
               const SizedBox(width: 10),
               Expanded(
@@ -524,10 +538,8 @@ class _PublicationCard extends StatelessWidget {
               const SizedBox(width: 8),
               Icon(Icons.arrow_forward_ios,
                   size: 12,
-                  color: Theme.of(context)
-                      .colorScheme
-                      .onSurface
-                      .withOpacity(0.3)),
+                  color:
+                      Theme.of(context).colorScheme.onSurface.withOpacity(0.3)),
             ],
           ),
           const SizedBox(height: 12),

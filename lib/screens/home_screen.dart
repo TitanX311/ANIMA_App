@@ -35,12 +35,12 @@ class HomeScreen extends StatelessWidget {
             floating: true,
             snap: true,
             backgroundColor: Colors.transparent,
-            leading: Builder(
-              builder: (ctx) => IconButton(
-                icon: Icon(Icons.menu_rounded, color: acc),
-                onPressed: () => Scaffold.of(ctx).openDrawer(),
-              ),
-            ),
+            // leading: Builder(
+            //   builder: (ctx) => IconButton(
+            //     icon: Icon(Icons.menu_rounded, color: acc),
+            //     onPressed: () => Scaffold.of(ctx).openDrawer(),
+            //   ),
+            // ),
             title: Text(
               'ANIMA AERO CLUB',
               style: TextStyle(

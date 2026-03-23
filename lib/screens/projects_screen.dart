@@ -24,12 +24,12 @@ class ProjectsScreen extends StatelessWidget {
         title: Text('AIRCRAFT PROJECTS',
             style: TextStyle(color: acc, letterSpacing: 2)),
         backgroundColor: Colors.transparent,
-        leading: Builder(
-          builder: (ctx) => IconButton(
-            icon: Icon(Icons.menu_rounded, color: acc),
-            onPressed: () => Scaffold.of(ctx).openDrawer(),
-          ),
-        ),
+        // leading: Builder(
+        //   builder: (ctx) => IconButton(
+        //     icon: Icon(Icons.menu_rounded, color: acc),
+        //     onPressed: () => Scaffold.of(ctx).openDrawer(),
+        //   ),
+        // ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 12),
@@ -81,8 +81,7 @@ class ProjectsScreen extends StatelessWidget {
                       canDelete: auth.isAdmin ||
                           auth.currentUser?.id == proj.addedById,
                       onDelete: () => data.deleteProject(proj.id),
-                      onTap: () =>
-                          _showProjectDetail(ctx, proj, isDark, acc),
+                      onTap: () => _showProjectDetail(ctx, proj, isDark, acc),
                     ),
                   ),
                 );
@@ -262,8 +261,8 @@ class ProjectsScreen extends StatelessWidget {
                                       width: 70,
                                       height: 70,
                                       color: acc.withOpacity(0.15),
-                                      child: Icon(Icons.broken_image,
-                                          color: acc),
+                                      child:
+                                          Icon(Icons.broken_image, color: acc),
                                     ),
                                   ),
                                 ),
@@ -315,8 +314,8 @@ class ProjectsScreen extends StatelessWidget {
                           Expanded(
                             child: TextField(
                               controller: specValCtrl,
-                              decoration: const InputDecoration(
-                                  labelText: 'Value'),
+                              decoration:
+                                  const InputDecoration(labelText: 'Value'),
                             ),
                           ),
                           const SizedBox(width: 8),
@@ -427,8 +426,7 @@ class ProjectsScreen extends StatelessWidget {
                       fit: BoxFit.cover,
                       errorBuilder: (_, __, ___) => Container(
                         color: acc.withOpacity(0.1),
-                        child: Icon(Icons.flight_rounded,
-                            size: 80, color: acc),
+                        child: Icon(Icons.flight_rounded, size: 80, color: acc),
                       ),
                     ),
                   ),
@@ -540,8 +538,7 @@ class ProjectsScreen extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 16, vertical: 12),
                                     decoration: BoxDecoration(
-                                      border: e.key <
-                                              proj.specs.length - 1
+                                      border: e.key < proj.specs.length - 1
                                           ? Border(
                                               bottom: BorderSide(
                                                   color: acc.withOpacity(0.1)))
@@ -617,20 +614,23 @@ class _ProjectCard extends StatelessWidget {
           Container(
             height: 180,
             decoration: BoxDecoration(
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(16)),
               color: acc.withOpacity(0.08),
             ),
             clipBehavior: Clip.antiAlias,
             child: project.imageUrls.isEmpty
-                ? Center(child: Icon(Icons.flight_rounded, size: 60, color: acc))
+                ? Center(
+                    child: Icon(Icons.flight_rounded, size: 60, color: acc))
                 : Stack(
                     children: [
                       Positioned.fill(
                         child: Image.network(
                           project.imageUrls.first,
                           fit: BoxFit.cover,
-                          errorBuilder: (_, __, ___) =>
-                              Center(child: Icon(Icons.flight_rounded, size: 60, color: acc)),
+                          errorBuilder: (_, __, ___) => Center(
+                              child: Icon(Icons.flight_rounded,
+                                  size: 60, color: acc)),
                         ),
                       ),
                       Positioned.fill(
@@ -737,22 +737,25 @@ class _ProjectCard extends StatelessWidget {
                   Wrap(
                     spacing: 8,
                     runSpacing: 6,
-                    children: project.specs.entries.take(4).map((e) => Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 4),
-                          decoration: BoxDecoration(
-                            color: acc.withOpacity(0.08),
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                          child: Text(
-                            '${e.key}: ${e.value}',
-                            style: TextStyle(
-                              fontSize: 10,
-                              color: acc,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        )).toList(),
+                    children: project.specs.entries
+                        .take(4)
+                        .map((e) => Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 4),
+                              decoration: BoxDecoration(
+                                color: acc.withOpacity(0.08),
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: Text(
+                                '${e.key}: ${e.value}',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  color: acc,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ))
+                        .toList(),
                   ),
                 ],
                 const SizedBox(height: 8),
@@ -777,8 +780,7 @@ class _ProjectCard extends StatelessWidget {
                     ),
                     const Spacer(),
                     Icon(Icons.arrow_forward_ios,
-                        size: 12,
-                        color: acc.withOpacity(0.5)),
+                        size: 12, color: acc.withOpacity(0.5)),
                   ],
                 ),
               ],

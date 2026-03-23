@@ -53,12 +53,12 @@ class _TreasuryScreenState extends State<TreasuryScreen> {
           style: TextStyle(color: acc, letterSpacing: 2),
         ),
         backgroundColor: Colors.transparent,
-        leading: Builder(
-          builder: (ctx) => IconButton(
-            icon: Icon(Icons.menu_rounded, color: acc),
-            onPressed: () => Scaffold.of(ctx).openDrawer(),
-          ),
-        ),
+        // leading: Builder(
+        //   builder: (ctx) => IconButton(
+        //     icon: Icon(Icons.menu_rounded, color: acc),
+        //     onPressed: () => Scaffold.of(ctx).openDrawer(),
+        //   ),
+        // ),
         actions: [
           if (auth.isTreasurer || auth.isAdmin)
             Padding(
@@ -184,8 +184,8 @@ class _TreasuryScreenState extends State<TreasuryScreen> {
                                     .map((e) {
                                   final idx = e.key;
                                   final entry = e.value;
-                                  final color = _catColors[entry.key] ??
-                                      Colors.grey;
+                                  final color =
+                                      _catColors[entry.key] ?? Colors.grey;
                                   final isTouched = idx == _touchedIndex;
                                   return PieChartSectionData(
                                     value: entry.value,
@@ -274,9 +274,8 @@ class _TreasuryScreenState extends State<TreasuryScreen> {
                           selected: sel,
                           onSelected: (_) => setState(() => _filterCat = cat),
                           selectedColor: acc.withOpacity(0.2),
-                          backgroundColor: isDark
-                              ? AppColors.darkCard
-                              : AppColors.lightCard,
+                          backgroundColor:
+                              isDark ? AppColors.darkCard : AppColors.lightCard,
                           labelStyle: TextStyle(
                             color: sel
                                 ? acc
@@ -331,8 +330,7 @@ class _TreasuryScreenState extends State<TreasuryScreen> {
                                     catColor:
                                         _catColors[e.category] ?? Colors.grey,
                                     canDelete: auth.isTreasurer || auth.isAdmin,
-                                    onDelete: () =>
-                                        data.deleteExpense(e.id),
+                                    onDelete: () => data.deleteExpense(e.id),
                                   ),
                                 ))
                             .toList(),
@@ -347,8 +345,7 @@ class _TreasuryScreenState extends State<TreasuryScreen> {
     );
   }
 
-  void _showAddExpense(
-      BuildContext ctx, AuthProvider auth, DataProvider data) {
+  void _showAddExpense(BuildContext ctx, AuthProvider auth, DataProvider data) {
     final titleCtrl = TextEditingController();
     final amtCtrl = TextEditingController();
     final notesCtrl = TextEditingController();
@@ -364,10 +361,9 @@ class _TreasuryScreenState extends State<TreasuryScreen> {
           height: MediaQuery.of(ctx).size.height * 0.75,
           decoration: BoxDecoration(
             color: isDark ? AppColors.darkBg2 : AppColors.lightSurface,
-            borderRadius:
-                const BorderRadius.vertical(top: Radius.circular(24)),
-            border: Border(
-                top: BorderSide(color: AppColors.gold.withOpacity(0.3))),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+            border:
+                Border(top: BorderSide(color: AppColors.gold.withOpacity(0.3))),
           ),
           padding: EdgeInsets.only(
             left: 20,
@@ -413,12 +409,10 @@ class _TreasuryScreenState extends State<TreasuryScreen> {
                     prefixIcon: Icon(Icons.category_outlined),
                   ),
                   items: ExpenseCategory.all
-                      .map((c) =>
-                          DropdownMenuItem(value: c, child: Text(c)))
+                      .map((c) => DropdownMenuItem(value: c, child: Text(c)))
                       .toList(),
                   onChanged: (v) => setS(() => selectedCat = v!),
-                  dropdownColor:
-                      isDark ? AppColors.darkSurface : Colors.white,
+                  dropdownColor: isDark ? AppColors.darkSurface : Colors.white,
                 ),
                 const SizedBox(height: 14),
                 TextField(

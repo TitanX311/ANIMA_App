@@ -36,6 +36,16 @@ class _GalleryScreenState extends State<GalleryScreen> {
 
     return Scaffold(
       backgroundColor: Colors.transparent,
+      appBar: AppBar(
+        title: Text('GALLERY', style: TextStyle(color: acc, letterSpacing: 2)),
+        backgroundColor: Colors.transparent,
+        // leading: Builder(
+        //   builder: (ctx) => IconButton(
+        //     icon: Icon(Icons.menu_rounded, color: acc),
+        //     onPressed: () => Scaffold.of(ctx).openDrawer(),
+        //   ),
+        // ),
+      ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _showUpload(context, auth, data, isDark, acc),
         icon: const Icon(Icons.add_photo_alternate_outlined),
@@ -48,38 +58,14 @@ class _GalleryScreenState extends State<GalleryScreen> {
       ),
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            expandedHeight: 120,
-            pinned: true,
-            backgroundColor: Colors.transparent,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text(
-                'GALLERY',
-                style: TextStyle(
-                  fontFamily: 'BebasNeue',
-                  fontSize: 22,
-                  letterSpacing: 3,
-                  color: acc,
-                ),
-              ),
-              centerTitle: false,
-              titlePadding: const EdgeInsets.fromLTRB(60, 0, 0, 16),
-            ),
-            leading: Builder(
-              builder: (ctx) => IconButton(
-                icon: Icon(Icons.menu_rounded, color: acc),
-                onPressed: () => Scaffold.of(ctx).openDrawer(),
-              ),
-            ),
-          ),
-
           // Tags filter
           SliverToBoxAdapter(
             child: SizedBox(
               height: 52,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
                 itemCount: tagList.length,
                 separatorBuilder: (_, __) => const SizedBox(width: 8),
                 itemBuilder: (_, i) {
@@ -270,7 +256,8 @@ class _GalleryScreenState extends State<GalleryScreen> {
                           gradient: AppColors.goldGlow,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: const Icon(Icons.add, color: Colors.white, size: 20),
+                        child: const Icon(Icons.add,
+                            color: Colors.white, size: 20),
                       ),
                     ),
                   ],
@@ -300,9 +287,8 @@ class _GalleryScreenState extends State<GalleryScreen> {
                     data.addGalleryPhoto(GalleryPhoto(
                       imageUrl: urlCtrl.text.trim(),
                       title: titleCtrl.text.trim(),
-                      description: descCtrl.text.isEmpty
-                          ? null
-                          : descCtrl.text.trim(),
+                      description:
+                          descCtrl.text.isEmpty ? null : descCtrl.text.trim(),
                       uploadedById: auth.currentUser!.id,
                       uploadedByName: auth.currentUser!.name,
                       tags: tags,
